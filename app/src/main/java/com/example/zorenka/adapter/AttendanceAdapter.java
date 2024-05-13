@@ -33,13 +33,17 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceEntity> {
         TextView markView = view.findViewById(R.id.mark);
         TextView reasonView = view.findViewById(R.id.reason);
         PersonEntity person = item.getChildren().getPerson();
-        fullNameView.setText(
-                String.format("%s %s %s", person.getLastname(), person.getName(), person.getPatronymic())
-        );
+        String fullName = String.format("%s %s.", person.getLastname(), person.getFirstname().toCharArray()[0]);
+        if(person.getPatronymic() != null) {
+            fullName += " " + person.getPatronymic().toCharArray()[0] + '.';
+        }
+        fullNameView.setText(fullName);
 
         markView.setText(item.getMark());
         if (item.getReason() != null) {
             reasonView.setText(item.getReason().getReason());
+        } else {
+            reasonView.setText("");
         }
 
         return view;

@@ -1,19 +1,15 @@
 package com.example.zorenka.server.model;
 
 
-import java.util.Date;
-
 public class PersonEntity {
     private int id_person;
-    private int id_sex;
     private String lastname;
-    private String name;
+    private String firstname;
     private String patronymic;
-    private String birth_date;
     private int id_address;
     private int id_role;
 
-    private SexEntity sex;
+    private Boolean sex;
     private RoleEntity role;
     private AddressEntity address;
 
@@ -25,14 +21,6 @@ public class PersonEntity {
         this.id_person = id_person;
     }
 
-    public int getId_sex() {
-        return id_sex;
-    }
-
-    public void setId_sex(int id_sex) {
-        this.id_sex = id_sex;
-    }
-
     public String getLastname() {
         return lastname;
     }
@@ -41,12 +29,12 @@ public class PersonEntity {
         this.lastname = lastname;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getPatronymic() {
@@ -55,14 +43,6 @@ public class PersonEntity {
 
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
-    }
-
-    public String getBirth_date() {
-        return birth_date;
-    }
-
-    public void setBirth_date(String birth_date) {
-        this.birth_date = birth_date;
     }
 
     public int getId_address() {
@@ -81,14 +61,6 @@ public class PersonEntity {
         this.id_role = id_role;
     }
 
-    public SexEntity getSex() {
-        return sex;
-    }
-
-    public void setSex(SexEntity sex) {
-        this.sex = sex;
-    }
-
     public RoleEntity getRole() {
         return role;
     }
@@ -103,5 +75,13 @@ public class PersonEntity {
 
     public void setAddress(AddressEntity address) {
         this.address = address;
+    }
+
+    public Boolean getSex() {
+        return sex;
+    }
+
+    public void setSex(Boolean sex) {
+        this.sex = sex;
     }
 }

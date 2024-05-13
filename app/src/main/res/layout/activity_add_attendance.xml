@@ -9,28 +9,39 @@
 
     <Spinner
         android:id="@+id/child"
+        android:background="@drawable/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+
     <DatePicker
         android:id="@+id/picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:headerBackground="@drawable/back"
+        android:paddingHorizontal="20dp"
+
         />
     <EditText
         android:id="@+id/mark"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="введите знак"
+        android:hint="введите пометку*"
         android:inputType="text"
         />
     <Spinner
         android:id="@+id/reason"
+        android:background="@drawable/back"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
     <Button
         android:id="@+id/save"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Сохранить"

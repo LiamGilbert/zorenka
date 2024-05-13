@@ -5,11 +5,8 @@ public class ChildrenEntity {
     private int id_person;
     private int id_group;
     private int id_parent;
-    private int id_medcomission;
     private PersonEntity person;
     private GroupEntity group;
-    private ParentsEntity parents;
-    private MedcomissionEntity medcomission;
 
     public int getId_children() {
         return id_children;
@@ -43,14 +40,6 @@ public class ChildrenEntity {
         this.id_parent = id_parent;
     }
 
-    public int getId_medcomission() {
-        return id_medcomission;
-    }
-
-    public void setId_medcomission(int id_medcomission) {
-        this.id_medcomission = id_medcomission;
-    }
-
     public PersonEntity getPerson() {
         return person;
     }
@@ -67,19 +56,4 @@ public class ChildrenEntity {
         this.group = group;
     }
 
-    public ParentsEntity getParents() {
-        return parents;
-    }
-
-    public void setParents(ParentsEntity parents) {
-        this.parents = parents;
-    }
-
-    public MedcomissionEntity getMedcomission() {
-        return medcomission;
-    }
-
-    public void setMedcomission(MedcomissionEntity medcomission) {
-        this.medcomission = medcomission;
-    }
 }

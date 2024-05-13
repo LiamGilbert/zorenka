@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.example.zorenka.server.model.AuthorizationEntity;
 import com.example.zorenka.view.AttendanceActivity;
+import com.example.zorenka.view.dialog.MessageDialog;
 
 import java.io.IOException;
 
@@ -23,11 +24,18 @@ public class LoginCallback implements Callback<AuthorizationEntity> {
 
     @Override
     public void onResponse(Call<AuthorizationEntity> call, Response<AuthorizationEntity> response) {
+        MessageDialog dialog = new MessageDialog(context);
+
         if (response.isSuccessful()) {
+            if (!response.body().getPerson().getRole().getRole().toLowerCase().equals("воспитатель")) {
+                dialog.showDialog("Ошибка 403!", "У вас нет прав для доступа к приложению");
+                return;
+            }
             Intent intent = new Intent(context, AttendanceActivity.class);
             context.startActivity(intent);
         } else {
             try {
+                dialog.showDialog("Ошибка 401!", "Неправильный логин или пароль!");
                 Log.e("API_RESPONSE", "bad request: " + response.errorBody().string());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -37,6 +45,8 @@ public class LoginCallback implements Callback<AuthorizationEntity> {
 
     @Override
     public void onFailure(Call<AuthorizationEntity> call, Throwable t) {
+        MessageDialog dialog = new MessageDialog(context);
+        dialog.showDialog("Ошибка!", "Проверьте подключение к интернету!");
         Log.e("API_RESPONSE", "fail request: " + t.getMessage());
         t.printStackTrace();
     }

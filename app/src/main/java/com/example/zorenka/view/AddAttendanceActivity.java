@@ -2,7 +2,6 @@ package com.example.zorenka.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,7 +17,6 @@ import com.example.zorenka.callback.CreateAttendanceCallback;
 import com.example.zorenka.callback.SpinCallback;
 import com.example.zorenka.server.HttpBuilder;
 import com.example.zorenka.server.model.AttendanceCreateDto;
-import com.example.zorenka.server.model.AttendanceEntity;
 import com.example.zorenka.server.model.ChildrenEntity;
 import com.example.zorenka.server.model.ReasonEntity;
 import com.example.zorenka.server.repository.AttendanceRepository;
@@ -27,9 +25,6 @@ import com.example.zorenka.server.repository.ReasonRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import retrofit2.Callback;
 
 public class AddAttendanceActivity extends AppCompatActivity {
 
@@ -54,8 +49,8 @@ public class AddAttendanceActivity extends AppCompatActivity {
         ReasonRepository reasonRepository = builder.createRepository(ReasonRepository.class);
         ChildRepository childRepository = builder.createRepository(ChildRepository.class);
 
-        SpinCallback<ChildrenEntity> childCallback = new SpinCallback<>();
-        SpinCallback<ReasonEntity> reasonCallback = new SpinCallback<>();
+        SpinCallback<ChildrenEntity> childCallback = new SpinCallback<>(this);
+        SpinCallback<ReasonEntity> reasonCallback = new SpinCallback<>(this);
 
         childCallback.onFetch(items -> {
             ArrayAdapter<ChildrenEntity> adapter = new ChildAdapter(this, items);

@@ -6,8 +6,10 @@ import android.widget.ListView;
 
 import com.example.zorenka.adapter.AttendanceAdapter;
 import com.example.zorenka.server.model.AttendanceEntity;
+import com.example.zorenka.view.dialog.MessageDialog;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,13 +29,18 @@ public class AttendanceAllCallback implements Callback<List<AttendanceEntity>> {
     public void onResponse(Call<List<AttendanceEntity>> call, Response<List<AttendanceEntity>> response) {
         if (response.isSuccessful()) {
             List<AttendanceEntity> list = response.body();
+
             ArrayAdapter<AttendanceEntity> adapter = new AttendanceAdapter(context, list);
             listView.setAdapter(adapter);
+        } else {
+            MessageDialog dialog = new MessageDialog(context);
+            dialog.showDialog("Ошибка!", "Статус ошибки " + response.code());
         }
     }
 
     @Override
     public void onFailure(Call<List<AttendanceEntity>> call, Throwable t) {
-
+        MessageDialog dialog = new MessageDialog(context);
+        dialog.showDialog("Ошибка!", "проверьте подключение с интернетом!");
     }
 }

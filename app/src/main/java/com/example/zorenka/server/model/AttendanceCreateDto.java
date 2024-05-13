@@ -6,8 +6,7 @@ public class AttendanceCreateDto {
     private int id_child;
     private String date;
     private String mark;
-    private int id_reason;
-
+    private Integer id_reason;
     public int getId_child() {
         return id_child;
     }
@@ -32,11 +31,11 @@ public class AttendanceCreateDto {
         this.mark = mark;
     }
 
-    public int getId_reason() {
+    public Integer getId_reason() {
         return id_reason;
     }
 
-    public void setId_reason(int id_reason) {
+    public void setId_reason(Integer id_reason) {
         this.id_reason = id_reason;
     }
 }

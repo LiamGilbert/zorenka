@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.zorenka.R;
-import com.example.zorenka.server.model.AttendanceEntity;
 import com.example.zorenka.server.model.ChildrenEntity;
 import com.example.zorenka.server.model.PersonEntity;
 
@@ -41,9 +40,15 @@ public class ChildAdapter extends ArrayAdapter<ChildrenEntity> {
 
         TextView fullNameView = view.findViewById(R.id.full_name);
         PersonEntity person = item.getPerson();
+        String fullName =
+                String.format("%s %s", person.getLastname(), person.getFirstname());
+        if (person.getPatronymic() != null) {
+            fullName += " " + person.getPatronymic();
+        }
         fullNameView.setText(
-                String.format("%s %s %s", person.getLastname(), person.getName(), person.getPatronymic())
+                fullName
         );
+
 
         return view;
     }

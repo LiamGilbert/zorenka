@@ -7,7 +7,7 @@ public class AttendanceEntity {
     private int id_child;
     private String date;
     private String mark;
-    private int id_reason;
+    private Integer id_reason;
     private ChildrenEntity children;
     private ReasonEntity reason;
 

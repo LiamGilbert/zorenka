@@ -4,6 +4,7 @@ public class AuthorizationEntity {
     private Integer id_autorization;
     private Integer id_person;
     private String login;
+    private String password;
     private PersonEntity person;
 
     public Integer getId_autorization() {
@@ -36,5 +37,13 @@ public class AuthorizationEntity {
 
     public void setPerson(PersonEntity person) {
         this.person = person;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -9,6 +9,6 @@ import retrofit2.http.POST;
 
 public interface AuthRepository {
 
-    @POST("/v1/autorization/login")
+    @POST("/v1/authorization/login")
     Call<AuthorizationEntity> login(@Body LoginDto dto);
 }

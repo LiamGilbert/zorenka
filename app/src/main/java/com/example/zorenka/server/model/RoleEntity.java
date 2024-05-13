@@ -1,22 +1,22 @@
 package com.example.zorenka.server.model;
 
 public class RoleEntity {
-    private int id_roles;
-    private String role_name;
+    private int id_role;
+    private String role;
 
-    public int getId_roles() {
-        return id_roles;
+    public int getId_role() {
+        return id_role;
     }
 
-    public void setId_roles(int id_roles) {
-        this.id_roles = id_roles;
+    public void setId_role(int id_role) {
+        this.id_role = id_role;
     }
 
-    public String getRole_name() {
-        return role_name;
+    public String getRole() {
+        return role;
     }
 
-    public void setRole_name(String role_name) {
-        this.role_name = role_name;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
