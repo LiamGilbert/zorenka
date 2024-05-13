@@ -5,47 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="10dp"
+    android:background="#E7E7E7"
     tools:context=".view.MainActivity">
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-        <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="10dp"
+        app:cardCornerRadius="10dp"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Авторизация"
-            android:textStyle="bold"
-            android:textSize="40sp"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="авторизация"
+                android:textStyle="bold"
+                android:textSize="40sp"
 
-            />
-        <EditText
-            android:id="@+id/login"
-            android:background="@drawable/back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Введите логин*"
-            android:inputType="text"
-            />
-        <EditText
-            android:id="@+id/password"
-            android:background="@drawable/back"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Введите пароль*"
-            android:inputType="textPassword"
-            />
-        <Button
-            android:id="@+id/enter_app"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Войти"
-            />
-    </LinearLayout>
+                />
+            <EditText
+                android:id="@+id/login"
+                android:background="@drawable/back"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/aqua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Введите логин*"
+                android:inputType="text"
+                />
+            <EditText
+                android:id="@+id/password"
+                android:background="@drawable/back"
+                android:layout_marginTop="5dp"
+                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/aqua"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Введите пароль*"
+                android:inputType="textPassword"
+                />
+            <Button
+                android:id="@+id/enter_app"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Войти"
+                android:layout_gravity="right"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

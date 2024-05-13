@@ -18,10 +18,12 @@ import com.example.zorenka.callback.SpinCallback;
 import com.example.zorenka.server.HttpBuilder;
 import com.example.zorenka.server.model.AttendanceCreateDto;
 import com.example.zorenka.server.model.ChildrenEntity;
+import com.example.zorenka.server.model.PersonEntity;
 import com.example.zorenka.server.model.ReasonEntity;
 import com.example.zorenka.server.repository.AttendanceRepository;
 import com.example.zorenka.server.repository.ChildRepository;
 import com.example.zorenka.server.repository.ReasonRepository;
+import com.example.zorenka.view.dialog.MessageDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,6 +61,10 @@ public class AddAttendanceActivity extends AppCompatActivity {
         });
 
         reasonCallback.onFetch(items -> {
+            ReasonEntity empty = new ReasonEntity();
+            empty.setReason("Не выбран");
+            empty.setId_reason(0);
+            items.add(0, empty);
             ArrayAdapter<ReasonEntity> adapter = new ReasonAdapter(this, items);
             reasonSpinner.setAdapter(adapter);
         });
@@ -73,23 +79,30 @@ public class AddAttendanceActivity extends AppCompatActivity {
             AttendanceCreateDto dto = checkFields();
             saveChanges(dto);
         } catch (Exception ex) {
+            MessageDialog dialog = new MessageDialog(this);
+            dialog.showDialog("Ошибка!", ex.getMessage());
             ex.printStackTrace();
         }
     }
 
     private AttendanceCreateDto checkFields() throws Exception {
         AttendanceCreateDto dto = new AttendanceCreateDto();
-        Date date = new Date(picker.getYear(), picker.getMonth(), picker.getDayOfMonth());
+        Date date = new Date(picker.getYear() - 1900, picker.getMonth(), picker.getDayOfMonth());
         String mark = markView.getText().toString();
         ReasonEntity reason = (ReasonEntity) reasonSpinner.getSelectedItem();
         ChildrenEntity children = (ChildrenEntity) childSpinner.getSelectedItem();
-        if(mark.isEmpty() || children == null) {
-            throw new Exception();
+        if (mark.isEmpty()) {
+            throw new IllegalArgumentException("Введите пометку!");
         }
+
+        if (children == null) {
+            throw new IllegalArgumentException("Выберите ребенка!");
+        }
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dto.setDate(dateFormat.format(date));
         dto.setMark(mark);
-        dto.setId_reason(reason.getId_reason());
+        dto.setId_reason(reason.getId_reason() != 0 ? reason.getId_reason() : null);
         dto.setId_child(children.getId_children());
         return dto;
     }
