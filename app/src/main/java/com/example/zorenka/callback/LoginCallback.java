@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.example.zorenka.server.StaticFields;
 import com.example.zorenka.server.model.AuthorizationEntity;
 import com.example.zorenka.view.AttendanceActivity;
 import com.example.zorenka.view.dialog.MessageDialog;
@@ -31,6 +32,7 @@ public class LoginCallback implements Callback<AuthorizationEntity> {
                 dialog.showDialog("Ошибка 403!", "У вас нет прав для доступа к приложению");
                 return;
             }
+            StaticFields.Person = response.body();
             Intent intent = new Intent(context, AttendanceActivity.class);
             context.startActivity(intent);
         } else {

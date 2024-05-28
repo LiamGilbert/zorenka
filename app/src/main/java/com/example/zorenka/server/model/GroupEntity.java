@@ -3,7 +3,7 @@ package com.example.zorenka.server.model;
 public class GroupEntity {
     private int id_group;
     private String group_name;
-    private int id_educator;
+    private int id_person;
     private int id_grouptype;
     private PersonEntity person;
     private GroupTypeEntity type;
@@ -24,12 +24,12 @@ public class GroupEntity {
         this.group_name = group_name;
     }
 
-    public int getId_educator() {
-        return id_educator;
+    public int getId_person() {
+        return id_person;
     }
 
-    public void setId_educator(int id_educator) {
-        this.id_educator = id_educator;
+    public void setId_person(int id_person) {
+        this.id_person = id_person;
     }
 
     public int getId_grouptype() {

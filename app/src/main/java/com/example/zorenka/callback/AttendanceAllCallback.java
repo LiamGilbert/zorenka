@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.zorenka.adapter.AttendanceAdapter;
+import com.example.zorenka.server.StaticFields;
 import com.example.zorenka.server.model.AttendanceEntity;
 import com.example.zorenka.view.dialog.MessageDialog;
 
@@ -28,7 +29,10 @@ public class AttendanceAllCallback implements Callback<List<AttendanceEntity>> {
     @Override
     public void onResponse(Call<List<AttendanceEntity>> call, Response<List<AttendanceEntity>> response) {
         if (response.isSuccessful()) {
-            List<AttendanceEntity> list = response.body();
+            List<AttendanceEntity> list =
+                    response.body().stream()
+                            .filter(x -> x.getChildren().getGroup().getId_person() == StaticFields.Person.getId_person())
+                            .collect(Collectors.toList());
 
             ArrayAdapter<AttendanceEntity> adapter = new AttendanceAdapter(context, list);
             listView.setAdapter(adapter);
